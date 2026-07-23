@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="foot-top">
       <div class="foot-brand">
         <a href="index.html" class="logo on-dark">
-          <img src="assets/logo-light.svg" alt="Pixel CPA" class="logo-img">
+          <img src="assets/logo-full-light.svg" alt="Pixel CPA" class="logo-img" width="144" height="26">
         </a>
         <p>Cabinet comptable moderne basé au Québec, dédié aux professionnels autonomes et petites entreprises.</p>
       </div>

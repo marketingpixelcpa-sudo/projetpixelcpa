@@ -19,6 +19,7 @@
   /* secondaires (accents de données / ponctuels) */
   --coral:       #FF6B4A;
   --blue:        #005F97;
+  --blue-soft:   #4FA3D8; /* variante lisible du bleu sur fond sombre */
   --pink:        #FC96AC;
 
   --white:       #FFFFFF;
@@ -36,6 +37,19 @@
   --font-body:   'Inter', sans-serif;
 
   --ease: cubic-bezier(.22,.9,.32,1);
+
+  /* Deconstructed-corner masks, inlined as data-URIs so they also work over file://
+     (Chrome/Edge block external-file CSS masks on the file:// protocol). */
+  --notch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 210'%3E%3Cpath d='M200,0 L580,0 A20 20 0 0 1 600,20 L600,190 A20 20 0 0 1 580,210 L20,210 A20 20 0 0 1 0,190 L0,74 A20 20 0 0 1 20,54 L160,54 A20 20 0 0 0 180,34 L180,20 A20 20 0 0 1 200,0 Z'/%3E%3C/svg%3E");
+  --notch-panel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath d='M218,0 L1172,0 A28 28 0 0 1 1200,28 L1200,272 A28 28 0 0 1 1172,300 L28,300 A28 28 0 0 1 0,272 L0,148 A28 28 0 0 1 28,120 L162,120 A28 28 0 0 0 190,92 L190,28 A28 28 0 0 1 218,0 Z'/%3E%3C/svg%3E");
+  /* service cards: shallower top-left notch, viewBox tuned to the card ratio so corners stay round */
+  --notch-card: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 300'%3E%3Cpath d='M136,0 L342,0 A18 18 0 0 1 360,18 L360,282 A18 18 0 0 1 342,300 L18,300 A18 18 0 0 1 0,282 L0,70 A18 18 0 0 1 18,52 L100,52 A18 18 0 0 0 118,34 L118,18 A18 18 0 0 1 136,0 Z'/%3E%3C/svg%3E");
+  /* hero (first section): small deconstructed corner — fallback used on narrow desktops (860–1023px)
+     where the title wraps to several lines and there's no room for the big cutout. */
+  --notch-hero: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1160 380'%3E%3Cpath d='M170,0 L1140,0 A20 20 0 0 1 1160,20 L1160,360 A20 20 0 0 1 1140,380 L20,380 A20 20 0 0 1 0,360 L0,84 A20 20 0 0 1 20,64 L130,64 A20 20 0 0 0 150,44 L150,20 A20 20 0 0 1 170,0 Z'/%3E%3C/svg%3E");
+  /* large top-left cutout (≥1024px): the "missing corner" that holds the hero title on the cream
+     background. ≈ 520×185 in a 1176×410 box, every corner (incl. the concave one) rounded. */
+  --notch-hero-cut: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1176 410'%3E%3Cpath d='M544,0 L1148,0 A28 28 0 0 1 1176,28 L1176,382 A28 28 0 0 1 1148,410 L28,410 A28 28 0 0 1 0,382 L0,209 A24 24 0 0 1 24,185 L496,185 A24 24 0 0 0 520,161 L520,24 A24 24 0 0 1 544,0 Z'/%3E%3C/svg%3E");
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -78,16 +92,16 @@ button{font-family:inherit; cursor:pointer;}
 .eyebrow{
   display:inline-flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
   font-family:var(--font-body);
   font-weight:700;
-  font-size:12px;
-  letter-spacing:.14em;
+  font-size:11px;
+  letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--dark);
   background:var(--teal-pale);
-  padding:7px 16px 7px 13px;
-  border-radius:999px;
+  padding:6px 12px 6px 10px;
+  border-radius:8px;
 }
 .eyebrow::before{
   content:'';
@@ -108,7 +122,7 @@ button{font-family:inherit; cursor:pointer;}
   font-weight:600;
   font-size:15px;
   padding:14px 26px;
-  border-radius:999px;
+  border-radius:12px;
   border:1.5px solid transparent;
   transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .25s ease, color .25s ease;
   white-space:nowrap;
@@ -191,7 +205,7 @@ button{font-family:inherit; cursor:pointer;}
 .nav-links{display:flex; align-items:center; gap:6px;}
 .nav-links a{
   position:relative;
-  padding:10px 16px; border-radius:999px; font-size:14px; font-weight:600; color:var(--ink-soft);
+  padding:10px 16px; border-radius:10px; font-size:14px; font-weight:600; color:var(--ink-soft);
   transition:background .25s ease, color .25s ease;
 }
 .nav-links a:hover, .nav-links a.active{ background:rgba(26,26,26,.06); color:var(--dark); }
@@ -363,6 +377,15 @@ footer{ view-transition-name:site-footer; }
   background:var(--dark);
   border-radius:28px;
   overflow:hidden;
+  /* the deconstructed corner: a single SVG mask cuts the notch with every corner
+     (including the concave one) rounded — no more square-cornered two-div hack. */
+  -webkit-mask:var(--notch) 0 0 / 100% 100% no-repeat;
+          mask:var(--notch) 0 0 / 100% 100% no-repeat;
+}
+/* wide dark panels (CTA) use a smaller, corner-sized notch */
+.deco-panel{
+  -webkit-mask-image:var(--notch-panel);
+          mask-image:var(--notch-panel);
 }
 .deco-bite{
   position:absolute;
@@ -396,6 +419,21 @@ footer{ view-transition-name:site-footer; }
   50%    { transform:translate(var(--px,0px), calc(var(--py,0px) - 14px)) rotate(3deg); }
 }
 
+/* ---------- floating brand pixel chips (logo "detached pixel" motif) ---------- */
+/* Small rounded-square clusters echoing the delivered Rectangle chips + the logo mark's
+   pixel that pops off the corner. Purely decorative, never intercept pointer events. */
+.pixels{ position:absolute; pointer-events:none; z-index:1; }
+.pixels b{
+  position:absolute; display:block;
+  border-radius:28%;
+  box-shadow:0 10px 22px -10px rgba(26,26,26,.4);
+  animation:float 7s ease-in-out infinite;
+}
+@media(prefers-reduced-motion:reduce){ .pixels b{ animation:none; } }
+/* the hero cluster sits over the dark card, above the headline — hidden on small screens
+   where the card is tight, shown from the desktop breakpoint. */
+.pixels-hero{ display:none; z-index:3; }
+
 /* ---------- section spacing ---------- */
 section{ padding:112px 0; position:relative; }
 .section-tight{ padding:72px 0; }
@@ -415,18 +453,24 @@ section{ padding:112px 0; position:relative; }
 .hero-card{
   position:relative;
   display:flex; flex-direction:column;
+  background:transparent;
+  border-radius:28px;
+}
+/* dark body sits behind the content; on desktop it's cut with the deconstructed corner.
+   kept as a separate layer so the overhanging photo and the title are never masked. */
+.hero-card-fill{
+  position:absolute; inset:0;
   background:var(--dark);
   border-radius:28px;
+  z-index:0;
 }
 .hero-bite{
   position:relative;
-  background:var(--paper);
-  border-top-left-radius:28px;
-  border-bottom-right-radius:24px;
-  padding:30px 26px 24px;
+  background:transparent;
+  padding:44px 26px 22px;
   z-index:2;
 }
-.hero-bite h1{ font-size:clamp(28px,7vw,40px); max-width:16ch; margin:0; }
+.hero-bite h1{ font-size:clamp(28px,7vw,40px); max-width:16ch; margin:0; color:var(--white); }
 .hero-copy{ position:relative; z-index:2; padding:22px 26px 0; }
 .hero-copy .lede{ color:rgba(255,255,255,.72); font-size:15.5px; max-width:48ch; }
 .hero-copy .btn{ margin-top:20px; }
@@ -448,21 +492,34 @@ section{ padding:112px 0; position:relative; }
    so it can never inflate the card's height either — each piece is sized by its own content. */
 @media(min-width:860px){
   .hero-card{ display:block; margin-top:40px; padding-bottom:8px; }
-  .hero-bite{ width:min(460px,46%); padding:40px 44px; }
-  .hero-copy{ width:min(460px,46%); padding:36px 44px 44px; }
+  /* narrow desktop: plain dark rounded card — the notch (which scales with card height) would
+     reach the taller 3–4 line title here and bleed white text onto the cream. */
+  .hero-bite{ width:min(460px,46%); padding:108px 44px 18px; }
+  .hero-copy{ width:min(460px,46%); padding:30px 44px 48px; }
   .hero-photo{
     position:absolute;
-    right:6%; bottom:-40px;
-    width:30%;
+    right:7%; bottom:-36px;
+    width:25%;
     margin:0;
-    aspect-ratio:4/5;
+    aspect-ratio:1/1;
     height:auto;
   }
   /* both chips sit in the open dark gap between the text column and the photo —
      never over the photo, never over the paragraph text. */
   .hero-chip{ display:block; position:absolute; }
-  .chip-orange{ top:-30px; left:50%; width:70px; height:70px; background:var(--orange); z-index:4; }
-  .chip-teal{ top:130px; left:49%; width:44px; height:44px; background:var(--teal); z-index:1; animation-delay:1.2s; }
+  .chip-orange{ top:-38px; left:49%; width:104px; height:104px; background:var(--orange); z-index:4; }
+  .chip-teal{ top:132px; left:50%; width:68px; height:68px; background:var(--teal); z-index:1; animation-delay:1.2s; }
+  .pixels-hero{ display:block; top:34px; left:44px; }
+}
+/* wide desktop: the small deconstructed corner (the "missing corner") is cut back in — it holds
+   ONLY the 3 colour blocks, the title stays white inside the dark card. Gated ≥1100px so the
+   taller narrow-width title never bleeds onto the cream notch. */
+@media(min-width:1100px){
+  .hero-card-fill{
+    border-radius:0;
+    -webkit-mask:var(--notch-hero) 0 0 / 100% 100% no-repeat;
+            mask:var(--notch-hero) 0 0 / 100% 100% no-repeat;
+  }
 }
 @media(max-width:480px){
   .hero-bite{ padding:26px 20px 20px; }
@@ -527,15 +584,15 @@ section{ padding:112px 0; position:relative; }
 /* ---------- services grid ---------- */
 .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; perspective:1200px; }
 .s-card{
-  background:var(--white);
+  background:var(--dark);
   border-radius:var(--radius-lg);
   padding:34px 28px 30px;
   position:relative;
   transition:transform .15s ease-out, box-shadow .45s var(--ease);
-  border:1px solid rgba(26,26,26,.05);
+  border:1px solid rgba(255,255,255,.06);
   will-change:transform;
 }
-.s-card:hover{ box-shadow:0 30px 60px -28px rgba(26,26,26,.28); }
+.s-card:hover{ box-shadow:0 30px 60px -28px rgba(26,26,26,.5); }
 .s-card:not(:hover){ transform:none !important; }
 .s-icon{
   width:52px; height:52px; border-radius:14px;
@@ -545,11 +602,11 @@ section{ padding:112px 0; position:relative; }
 }
 .s-card:hover .s-icon{ transform:rotate(-6deg) scale(1.06); }
 .s-icon svg{width:24px;height:24px;}
-.s-card h3{ font-size:19px; margin-bottom:10px; }
-.s-card p{ font-size:14.5px; color:var(--ink-soft); }
+.s-card h3{ font-size:19px; margin-bottom:10px; color:var(--white); }
+.s-card p{ font-size:14.5px; color:rgba(255,255,255,.64); }
 .s-card .go{
   display:inline-flex; align-items:center; gap:6px; margin-top:18px;
-  font-size:13px; font-weight:700; color:var(--dark);
+  font-size:13px; font-weight:700; color:var(--orange);
   opacity:0; transform:translateX(-6px);
   transition:opacity .3s ease, transform .3s ease;
 }
@@ -559,6 +616,50 @@ section{ padding:112px 0; position:relative; }
 .s-icon.coral{ background:#FFD9CF; }
 .s-icon.blue{ background:#CFE4F0; }
 .s-icon svg{ stroke:var(--dark); }
+
+/* ---------- pixel icons (client brand icon set) — inlined & recoloured ---------- */
+/* The delivered SVGs are solid-black pixel art. They're inlined (not referenced via
+   mask/img) so they render over file:// and any host, and each one is tinted to a brand
+   colour through `color` — the paths inherit currentColor. */
+.pico{ display:inline-block; line-height:0; color:var(--dark); }
+.pico svg{ display:block; width:100%; height:100%; }
+.pico svg path{ fill:currentColor; }
+.s-icon{ color:var(--dark); }
+.s-icon .pico{ width:26px; height:26px; }
+
+/* ---------- deconstructed colour cards (home services preview) ---------- */
+.deco-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.deco-card{
+  position:relative;
+  display:flex; flex-direction:column;
+  border-radius:var(--radius-lg);
+  background:var(--card, var(--cream-mid));
+  /* one consistent inset on every side; icon, title, body and link all share the 32px
+     left margin so the card reads on a clean square grid. */
+  padding:32px 32px 30px;
+  min-height:300px;
+  box-shadow:0 18px 26px -18px rgba(26,26,26,0);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.deco-card:hover{ transform:translateY(-6px); box-shadow:0 26px 34px -18px rgba(26,26,26,.3); }
+/* the notched-fill layer is retired here — the stretched mask distorted the corner and
+   pushed the icon off-grid; the flat rounded card keeps the margins square. */
+.deco-card-fill{ display:none; }
+.deco-card-icon{
+  position:relative; z-index:1;
+  width:42px; height:42px;
+  margin-bottom:20px;
+  color:var(--dark);
+}
+.deco-card h3{ position:relative; z-index:1; font-size:20px; margin-bottom:12px; color:var(--dark); }
+.deco-card p{ position:relative; z-index:1; font-size:14.5px; color:rgba(26,26,26,.72); }
+.deco-card .go{
+  position:relative; z-index:1;
+  display:inline-flex; align-items:center; gap:6px; margin-top:auto; padding-top:20px;
+  font-size:13px; font-weight:700; color:var(--dark);
+  transition:transform .3s ease;
+}
+.deco-card:hover .go{ transform:translateX(4px); }
 
 /* ---------- pixel blocks decorative row ---------- */
 .pixel-row{ display:flex; gap:18px; align-items:flex-end; }
@@ -609,7 +710,7 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
 .foot-social svg{ width:16px; height:16px; stroke:var(--white); }
 
 /* ---------- generic page hero (sous-pages) ---------- */
-.page-hero{ padding:64px 0 20px; }
+.page-hero{ padding:96px 0 28px; }
 .page-hero h1{ font-size:clamp(36px,4.6vw,56px); margin-top:18px; max-width:16ch; }
 .page-hero .lede{ margin-top:18px; max-width:56ch; color:var(--ink-soft); font-size:17px; }
 .crumb{ font-size:13px; color:var(--ink-faint); font-weight:600; }
@@ -617,34 +718,37 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
 
 /* ---------- contact info cards ---------- */
 .info-list{ display:grid; gap:16px; grid-template-columns:1fr 1fr; }
-.info-card{ display:flex; gap:16px; align-items:flex-start; background:var(--white); border-radius:var(--radius-lg); padding:20px 22px; box-shadow:0 12px 28px -20px rgba(26,26,26,.35); min-height:110px; }
+.info-card{ display:flex; gap:16px; align-items:flex-start; background:var(--dark); border-radius:var(--radius-lg); padding:20px 22px; box-shadow:0 12px 28px -20px rgba(26,26,26,.5); min-height:110px; border:1px solid rgba(255,255,255,.06); }
 .info-card .ic{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; }
 .info-card svg{ width:20px; height:20px; stroke:var(--dark); }
-.info-card h4{ font-size:15px; margin-bottom:4px; }
-.info-card p{ font-size:14px; color:var(--ink-soft); }
+.info-card .ic{ color:var(--dark); }
+.info-card .ic .pico{ width:24px; height:24px; }
+.info-card h4{ font-size:15px; margin-bottom:4px; color:var(--white); }
+.info-card p{ font-size:14px; color:rgba(255,255,255,.64); }
+.info-card p a{ color:var(--white); }
 @media(max-width:860px){ .info-list{ grid-template-columns:1fr; } }
 
 /* ---------- values grid (about) ---------- */
 .values{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-.v-card{ padding:30px; border-radius:var(--radius-lg); background:var(--white); }
+.v-card{ padding:30px; border-radius:var(--radius-lg); background:var(--dark); border:1px solid rgba(255,255,255,.06); }
 .v-card .tag{ width:38px; height:38px; border-radius:10px; margin-bottom:16px; }
-.v-card h4{ font-size:17px; margin-bottom:8px; }
-.v-card p{ font-size:14px; color:var(--ink-soft); }
+.v-card h4{ font-size:17px; margin-bottom:8px; color:var(--white); }
+.v-card p{ font-size:14px; color:rgba(255,255,255,.64); }
 .v-card .mark{ width:30px; height:auto; margin-bottom:18px; display:block; }
 
 /* ---------- why-us grid (brand mark cards) ---------- */
 .why-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
 .why-card{
-  background:var(--white);
+  background:var(--dark);
   border-radius:var(--radius-lg);
   padding:30px 26px;
-  border:1px solid rgba(26,26,26,.05);
+  border:1px solid rgba(255,255,255,.06);
   transition:transform .4s var(--ease), box-shadow .4s var(--ease);
 }
-.why-card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(26,26,26,.28); }
-.why-card .mark{ width:30px; height:auto; margin-bottom:20px; display:block; }
-.why-card h4{ font-size:16.5px; margin-bottom:8px; }
-.why-card p{ font-size:14px; color:var(--ink-soft); }
+.why-card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(26,26,26,.5); }
+.why-card .mark{ width:34px; height:34px; margin-bottom:20px; display:block; }
+.why-card h4{ font-size:16.5px; margin-bottom:8px; color:var(--white); }
+.why-card p{ font-size:14px; color:rgba(255,255,255,.64); }
 
 /* ---------- stats band (dark panel) ---------- */
 .stats-panel{ position:relative; }
@@ -706,6 +810,7 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
   .hero-grid{ grid-template-columns:1fr; }
   .hero-visual{ height:380px; order:-1; }
   .services-grid{ grid-template-columns:repeat(2,1fr); }
+  .deco-cards{ grid-template-columns:repeat(2,1fr); }
   .foot-top{ grid-template-columns:1fr 1fr; }
   .values{ grid-template-columns:1fr; }
   .pricing{ grid-template-columns:1fr; }
@@ -728,6 +833,7 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
   .nav-burger{ display:flex; }
   section{ padding:72px 0; }
   .services-grid{ grid-template-columns:1fr; }
+  .deco-cards{ grid-template-columns:1fr; }
   .foot-top{ grid-template-columns:1fr; gap:32px; }
   .panel-dark{ padding:36px 26px; }
   .why-grid{ grid-template-columns:1fr; }

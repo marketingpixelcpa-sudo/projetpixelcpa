@@ -38,7 +38,7 @@
 
 <link rel="preload" as="image" href="assets/img/cpa-portrait-760.jpg"
       imagesrcset="assets/img/cpa-portrait-480.jpg 480w, assets/img/cpa-portrait-760.jpg 760w, assets/img/cpa-portrait-1100.jpg 1100w"
-      imagesizes="(min-width:860px) 30vw, calc(100vw - 92px)"
+      imagesizes="(min-width:860px) 25vw, calc(100vw - 92px)"
       fetchpriority="high">
 
 <script src="script.js" defer></script>
@@ -53,7 +53,7 @@
       "name": "Pixel CPA",
       "url": "https://pixelcpa.ca/",
       "image": "https://pixelcpa.ca/assets/img/og-image.jpg",
-      "logo": "https://pixelcpa.ca/assets/logo-dark.svg",
+      "logo": "https://pixelcpa.ca/assets/logo-full-dark.svg",
       "description": "Cabinet comptable moderne basé au Québec, dédié aux professionnels autonomes et aux petites entreprises. Expertise CPA combinée à l'automatisation.",
       "slogan": "Votre comptabilité, sans la paperasse.",
       "telephone": "+1-418-815-1471",
@@ -115,7 +115,7 @@
 <nav class="nav">
   <div class="wrap">
     <a href="index.html" class="logo" aria-label="Pixel CPA — accueil">
-      <img src="assets/logo-dark.svg" alt="Pixel CPA" class="logo-img" width="110" height="26">
+      <img src="assets/logo-full-dark.svg" alt="Pixel CPA" class="logo-img" width="144" height="26">
     </a>
     <div class="nav-links">
       <a href="index.html" class="active" aria-current="page">Accueil</a>
@@ -140,6 +140,12 @@
   <div class="aurora" aria-hidden="true"><b></b><b></b><b></b></div>
   <div class="wrap">
     <div class="hero-card" data-reveal="scale">
+      <span class="hero-card-fill" aria-hidden="true"></span>
+      <span class="pixels pixels-hero" aria-hidden="true">
+        <b style="width:30px;height:30px;background:var(--orange);top:0;left:0;"></b>
+        <b style="width:16px;height:16px;background:var(--teal);top:-4px;left:42px;animation-delay:1.1s;"></b>
+        <b style="width:12px;height:12px;background:var(--coral);top:26px;left:36px;animation-delay:.6s;"></b>
+      </span>
       <div class="hero-bite">
         <h1 class="split-words">Votre comptabilité, sans la paperasse.</h1>
       </div>
@@ -155,7 +161,7 @@
       <div class="hero-photo">
         <img src="assets/img/cpa-portrait-760.jpg"
              srcset="assets/img/cpa-portrait-480.jpg 480w, assets/img/cpa-portrait-760.jpg 760w, assets/img/cpa-portrait-1100.jpg 1100w"
-             sizes="(min-width:860px) 30vw, calc(100vw - 92px)"
+             sizes="(min-width:860px) 25vw, calc(100vw - 92px)"
              width="760" height="950"
              fetchpriority="high" decoding="async"
              alt="Le comptable professionnel agréé derrière Pixel CPA">
@@ -167,33 +173,35 @@
 <!-- ================= SERVICES ================= -->
 <section id="services" class="section-defer">
   <div class="wrap">
-    <div class="s-head" data-reveal="fade" style="margin-bottom:40px;">
+    <div class="s-head" data-reveal="fade" style="margin-top:48px; margin-bottom:40px; position:relative;">
+      <span class="pixels" aria-hidden="true" style="top:-36px; left:2px; width:60px; height:40px;">
+        <b style="width:24px;height:24px;background:var(--orange);top:0;left:0;"></b>
+        <b style="width:14px;height:14px;background:var(--teal);top:-14px;left:32px;animation-delay:1.1s;"></b>
+        <b style="width:10px;height:10px;background:var(--coral);top:16px;left:30px;animation-delay:.6s;"></b>
+      </span>
       <h2 style="font-size:clamp(26px,3vw,36px);">Une comptabilité qui travaille pour vous, pas l'inverse</h2>
     </div>
 
-    <div class="services-grid stagger">
-      <a class="s-card" href="services.html" data-reveal="scale" style="--i:0">
-        <div class="s-icon orange">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
-        </div>
+    <div class="deco-cards stagger">
+      <a class="deco-card" href="services.html" data-reveal="scale" style="--i:0; --card:var(--cream-mid);">
+        <span class="deco-card-fill" aria-hidden="true"></span>
+        <span class="deco-card-icon pico" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 2H16V4H14V6H12V8H10V10H8V12H6V18H12V16H14V14H16V12H18V10H20V8H22V6H20V4H18V2ZM18 4V6H20V8H18V10H16V12H14V14H12V16H10V14H8V12H10V10H12V8H14V6H16V4H18Z"/><path d="M4 4H10V6H4V4Z"/><path d="M4 20H2V6H4V20Z"/><path d="M18 20H4V22L18 22V20Z"/><path d="M18 20V14H20V20H18Z"/></svg></span>
         <h3>Tenue de livres</h3>
         <p>Vos transactions classées, réconciliées et à jour chaque mois, sans que vous ayez à y penser.</p>
         <span class="go">En savoir plus →</span>
       </a>
 
-      <a class="s-card" href="services.html" data-reveal="scale" style="--i:1">
-        <div class="s-icon teal">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.5 2.5-2.5s2.5 1 2.5 2.2c0 2.6-5 1.6-5 4.3 0 1.3 1.1 2.3 2.5 2.3s2.5-1 2.5-2.3"/></svg>
-        </div>
+      <a class="deco-card" href="services.html" data-reveal="scale" style="--i:1; --card:var(--teal-pale);">
+        <span class="deco-card-fill" aria-hidden="true"></span>
+        <span class="deco-card-icon pico" aria-hidden="true"><svg viewBox="0 0 47 47"><path d="M25.459 13.7083H29.3757V17.6249H25.459V21.5416H29.3757V25.4583H25.459V29.3749H29.3757V33.2916H25.459V37.2083H21.5423V33.2916H17.6257V29.3749H21.5423V25.4583H17.6257V21.5416H21.5423V17.6249H17.6257V13.7083H21.5423V9.79158H25.459V13.7083Z"/><path d="M17.6257 17.6249V21.5416H13.709V17.6249H17.6257Z"/><path d="M29.3757 29.3749V25.4583H33.2923V29.3749H29.3757Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M13.709 1.95825V5.87492H9.79232V9.79158H5.87565V13.7083H1.95898V33.2916H5.87565V37.2083H9.79232V41.1249H13.709V45.0416H33.2923V41.1249H37.209V37.2083H41.1256V33.2916H45.0423V13.7083H41.1256V9.79158H37.209V5.87492H33.2923V1.95825H13.709ZM33.2923 5.87492V9.79158H37.209V13.7083H41.1256V33.2916H37.209V37.2083H33.2923V41.1249H13.709V37.2083H9.79232V33.2916H5.87565V13.7083H9.79232V9.79158H13.709V5.87492H33.2923Z"/></svg></span>
         <h3>Fiscalité &amp; impôts</h3>
         <p>Déclarations personnelles et corporatives optimisées, préparées bien avant les échéances.</p>
         <span class="go">En savoir plus →</span>
       </a>
 
-      <a class="s-card" href="services.html" data-reveal="scale" style="--i:2">
-        <div class="s-icon coral">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M8 13h3"/></svg>
-        </div>
+      <a class="deco-card" href="services.html" data-reveal="scale" style="--i:2; --card:#FFD9CF;">
+        <span class="deco-card-fill" aria-hidden="true"></span>
+        <span class="deco-card-icon pico" aria-hidden="true"><svg viewBox="0 0 51 51"><path d="M10.625 6.375H40.375V10.625H10.625V6.375Z"/><path d="M10.625 40.375H6.375V10.625H10.625V40.375Z"/><path d="M40.375 40.375V44.625H10.625V40.375H40.375Z"/><path d="M40.375 40.375H44.625V10.625H40.375V40.375Z"/><path d="M36.125 14.875V36.125H31.875L31.875 14.875H36.125Z"/><path d="M27.625 36.125V23.375H23.375V36.125H27.625Z"/><path d="M19.125 36.125V27.625H14.875V36.125H19.125Z"/></svg></span>
         <h3>Démarrage d'entreprise</h3>
         <p>Incorporation, structure fiscale et comptes configurés correctement dès le premier jour.</p>
         <span class="go">En savoir plus →</span>
@@ -203,7 +211,7 @@
 </section>
 
 <!-- ================= POURQUOI PIXEL CPA ================= -->
-<section class="section-tight section-defer" style="background:var(--white);">
+<section class="section-tight section-defer">
   <div class="wrap">
     <div class="s-head" data-reveal="fade">
       <span class="eyebrow">Pourquoi Pixel CPA</span>
@@ -212,47 +220,26 @@
 
     <div class="why-grid stagger">
       <div class="why-card" data-reveal="scale" style="--i:0">
-        <img src="assets/icons/pixel-mark-orange.svg" alt="" width="30" height="30" loading="lazy" decoding="async" class="mark">
+        <span class="mark pico" style="color:var(--orange);" aria-hidden="true"><svg viewBox="0 0 52 52"><path d="M10.8327 6.5H41.166V10.8333H10.8327V6.5Z"/><path d="M6.49935 36.8333L6.49935 10.8333H10.8327L10.8327 32.5H41.166V10.8333H45.4994V36.8333H6.49935Z"/><path d="M6.49935 41.1667V36.8333H2.16602V45.5H49.8327V36.8333H45.4994V41.1667H6.49935Z"/></svg></span>
         <h4>Automatisation intelligente</h4>
         <p>Vos comptes se synchronisent et se réconcilient automatiquement, jour après jour.</p>
       </div>
       <div class="why-card" data-reveal="scale" style="--i:1">
-        <img src="assets/icons/pixel-mark-teal.svg" alt="" width="30" height="30" loading="lazy" decoding="async" class="mark">
+        <span class="mark pico" style="color:var(--teal);" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2H8V4H6V6H4V8H2V16H4L4 18H6V20H8V22H16V20H18V18H20V16H22V8H20V6H18V4H16V2ZM18 6V8H12V10H10V12H14V14H18V18H16V20H8V18H10V14H8V12H4V10H8V6H12V4H14V6H18Z"/></svg></span>
         <h4>Un vrai humain, pas un robot</h4>
         <p>Votre CPA répond à vos questions et vous appelle avant chaque échéance importante.</p>
       </div>
       <div class="why-card" data-reveal="scale" style="--i:2">
-        <img src="assets/icons/pixel-mark-coral.svg" alt="" width="30" height="30" loading="lazy" decoding="async" class="mark">
+        <span class="mark pico" style="color:var(--coral);" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 14V8H11V14H13Z"/><path d="M9 12V14H7V12H9Z"/><path d="M15 14H17V10H15V14Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M13 2H11V4H3V18H10V20H8V22H10V20H14V22H16V20H14V18H21V4H13V2ZM5 16L5 6H19V16H5Z"/></svg></span>
         <h4>Transparence totale</h4>
         <p>Un tarif fixe mensuel, sans surprise, et un accès en tout temps à vos rapports.</p>
       </div>
       <div class="why-card" data-reveal="scale" style="--i:3">
-        <img src="assets/icons/pixel-mark-blue.svg" alt="" width="30" height="30" loading="lazy" decoding="async" class="mark">
+        <span class="mark pico" style="color:var(--blue-soft);" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 1H17V3H7V1Z"/><path d="M5 5V3H7V5H5Z"/><path d="M5 15H3V5H5V15Z"/><path d="M7 17H5V15H7V17Z"/><path d="M9 19H7V17H9V19Z"/><path d="M11 21H9V19H11V21Z"/><path d="M13 21V23H11V21H13Z"/><path d="M15 19V21H13V19H15Z"/><path d="M17 17H15V19H17V17Z"/><path d="M19 15V17H17V15H19Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M19 5V3H17V5H19ZM19 5H21V15H19V5Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14 6H10V8H8V12H10V14H14V12H16V8H14V6ZM14 8V12H10V8H14Z"/></svg></span>
         <h4>Ancré au Québec</h4>
         <p>Un cabinet local qui connaît vos réalités fiscales, pas un centre d'appels à distance.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= SHOWCASE (photo + quote) ================= -->
-<section class="section-tight section-defer">
-  <div class="wrap">
-    <figure class="showcase" data-reveal="fade">
-      <div class="showcase-photo">
-        <img src="assets/img/cpa-showcase-1200.jpg"
-             srcset="assets/img/cpa-showcase-760.jpg 760w, assets/img/cpa-showcase-1200.jpg 1200w, assets/img/cpa-showcase-1800.jpg 1800w"
-             sizes="(min-width:1240px) 1176px, calc(100vw - 64px)"
-             width="1200" height="960"
-             loading="lazy" decoding="async"
-             alt="Le comptable professionnel agréé de Pixel CPA, en portrait">
-      </div>
-      <blockquote class="showcase-quote">
-        <span class="quote-mark" aria-hidden="true">"</span>
-        <p class="quote">Pixel CPA a pris en charge toute ma tenue de livres en moins de deux semaines. J'ai enfin une vue claire sur mes finances chaque mois, sans lever le petit doigt.</p>
-        <figcaption class="who">Propriétaire d'une PME de services · Saguenay–Lac-Saint-Jean</figcaption>
-      </blockquote>
-    </figure>
   </div>
 </section>
 
@@ -311,7 +298,7 @@
     <div class="foot-top">
       <div class="foot-brand">
         <a href="index.html" class="logo on-dark" aria-label="Pixel CPA — accueil">
-          <img src="assets/logo-light.svg" alt="Pixel CPA" class="logo-img" width="110" height="26" loading="lazy" decoding="async">
+          <img src="assets/logo-full-light.svg" alt="Pixel CPA" class="logo-img" width="144" height="26" loading="lazy" decoding="async">
         </a>
         <p>Cabinet comptable moderne basé au Québec, dédié aux professionnels autonomes et petites entreprises.</p>
       </div>
