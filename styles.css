@@ -47,9 +47,13 @@
   /* hero (first section): small deconstructed corner — fallback used on narrow desktops (860–1023px)
      where the title wraps to several lines and there's no room for the big cutout. */
   --notch-hero: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1160 380'%3E%3Cpath d='M170,0 L1140,0 A20 20 0 0 1 1160,20 L1160,360 A20 20 0 0 1 1140,380 L20,380 A20 20 0 0 1 0,360 L0,84 A20 20 0 0 1 20,64 L130,64 A20 20 0 0 0 150,44 L150,20 A20 20 0 0 1 170,0 Z'/%3E%3C/svg%3E");
-  /* large top-left cutout (≥1024px): the "missing corner" that holds the hero title on the cream
-     background. ≈ 520×185 in a 1176×410 box, every corner (incl. the concave one) rounded. */
-  --notch-hero-cut: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1176 410'%3E%3Cpath d='M544,0 L1148,0 A28 28 0 0 1 1176,28 L1176,382 A28 28 0 0 1 1148,410 L28,410 A28 28 0 0 1 0,382 L0,209 A24 24 0 0 1 24,185 L496,185 A24 24 0 0 0 520,161 L520,24 A24 24 0 0 1 544,0 Z'/%3E%3C/svg%3E");
+  /* large top-left cutout (≥1100px): the "missing corner" that holds the hero title on the cream
+     background — the concept the client asked for. Big hole ≈ 560×205 in a 1176×410 box. */
+  --notch-hero-cut: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1176 410'%3E%3Cpath d='M584,0 L1148,0 A28 28 0 0 1 1176,28 L1176,382 A28 28 0 0 1 1148,410 L28,410 A28 28 0 0 1 0,382 L0,189 A24 24 0 0 1 24,165 L536,165 A24 24 0 0 0 560,141 L560,24 A24 24 0 0 1 584,0 Z'/%3E%3C/svg%3E");
+  /* FIXED-SIZE top-left notch piece — subtracted from the hero card via mask-composite so the hole
+     never rescales with the card. All three inner corners are rounded (the two convex step corners
+     + the concave one), matching the deconstructed brand shape. Positioned with a -20px offset. */
+  --notch-piece: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 604 209'%3E%3Cpath d='M0,0 L604,0 L604,20 A24 24 0 0 0 580,44 L580,161 A24 24 0 0 1 556,185 L44,185 A24 24 0 0 0 20,209 L0,209 Z' fill='%23000'/%3E%3C/svg%3E");
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -127,13 +131,22 @@ button{font-family:inherit; cursor:pointer;}
   transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .25s ease, color .25s ease;
   white-space:nowrap;
 }
+/* monochrome primary button: charcoal on light surfaces (kills the prominent yellow the
+   client flagged); inverted to white on dark surfaces below so it never disappears. */
 .btn-primary{
-  background:var(--orange);
-  color:var(--dark);
+  background:var(--dark);
+  color:var(--white);
 }
 .btn-primary:hover{
   transform:translateY(-2px);
-  box-shadow:0 14px 28px -12px rgba(255,179,71,.65);
+  box-shadow:0 14px 28px -14px rgba(0,0,0,.5);
+}
+.hero .btn-primary, .panel-dark .btn-primary, .deco .btn-primary{
+  background:var(--white);
+  color:var(--dark);
+}
+.hero .btn-primary:hover, .panel-dark .btn-primary:hover, .deco .btn-primary:hover{
+  box-shadow:0 14px 28px -12px rgba(0,0,0,.45);
 }
 .btn-dark{
   background:var(--dark);
@@ -299,7 +312,9 @@ p[data-reveal]{
   pointer-events:none;
 }
 .btn:hover::before{ left:120%; }
-.btn-dark::before{ background:linear-gradient(100deg, transparent, rgba(255,255,255,.18), transparent); }
+.btn-dark::before, .btn-primary::before{ background:linear-gradient(100deg, transparent, rgba(255,255,255,.18), transparent); }
+/* inverted (white) primary buttons on dark surfaces get a dark shine instead */
+.hero .btn-primary::before, .panel-dark .btn-primary::before, .deco .btn-primary::before{ background:linear-gradient(100deg, transparent, rgba(26,26,26,.14), transparent); }
 
 /* ---------- photos: grayscale by default, colour + slow push-in on hover ---------- */
 .hero-photo img, .showcase-photo img, .founder img{
@@ -507,19 +522,29 @@ section{ padding:112px 0; position:relative; }
   /* both chips sit in the open dark gap between the text column and the photo —
      never over the photo, never over the paragraph text. */
   .hero-chip{ display:block; position:absolute; }
-  .chip-orange{ top:-38px; left:49%; width:104px; height:104px; background:var(--orange); z-index:4; }
-  .chip-teal{ top:132px; left:50%; width:68px; height:68px; background:var(--teal); z-index:1; animation-delay:1.2s; }
+  .chip-orange{ top:-42px; left:57%; width:126px; height:126px; background:var(--orange); z-index:4; }
+  .chip-teal{ top:140px; left:50%; width:82px; height:82px; background:var(--teal); z-index:1; animation-delay:1.2s; }
   .pixels-hero{ display:block; top:34px; left:44px; }
 }
-/* wide desktop: the small deconstructed corner (the "missing corner") is cut back in — it holds
-   ONLY the 3 colour blocks, the title stays white inside the dark card. Gated ≥1100px so the
-   taller narrow-width title never bleeds onto the cream notch. */
+/* wide desktop: the title moves INTO the deconstructed hole (dark ink on the cream page) — the
+   concept the client wants. The hole is a FIXED 560×160px notch SUBTRACTED from a rounded card
+   (mask-composite), so it never rescales with the viewport — the paragraph always clears it,
+   at any width. Gated ≥1100px, where the title reliably fits on 2 lines inside the notch. */
 @media(min-width:1100px){
   .hero-card-fill{
-    border-radius:0;
-    -webkit-mask:var(--notch-hero) 0 0 / 100% 100% no-repeat;
-            mask:var(--notch-hero) 0 0 / 100% 100% no-repeat;
+    /* top-left corner isn't rounded — it lives inside the notch — which avoids a faint arc seam */
+    border-radius:0 28px 28px 28px;
+    -webkit-mask:linear-gradient(#000,#000), var(--notch-piece) -20px -20px / 604px 209px no-repeat;
+    -webkit-mask-composite:xor;
+            mask:linear-gradient(#000,#000), var(--notch-piece) -20px -20px / 604px 209px no-repeat;
+            mask-composite:exclude;
   }
+  /* title sized to fill the notch ("grandeur du carré bleu"): bigger + pulled up so it occupies
+     the hole, while the 2 lines still fit inside the 560px width. */
+  .hero-bite{ width:min(560px,55%); padding:24px 28px 6px; }
+  .hero-bite h1{ color:var(--dark); font-size:54px; line-height:1.03; }
+  /* paragraph starts below the fixed 160px notch — a constant offset, so it can never bleed */
+  .hero-copy{ padding-top:40px; }
 }
 @media(max-width:480px){
   .hero-bite{ padding:26px 20px 20px; }
@@ -676,6 +701,11 @@ section{ padding:112px 0; position:relative; }
 }
 .panel-dark h2, .panel-dark h3{ color:var(--white); }
 .panel-dark .lede{ color:rgba(255,255,255,.68); }
+/* two brand blocks sitting below a panel title — the minimalist accent the client asked for in
+   place of the gradient aurora. In-flow (not absolute) so they never overlap the heading. */
+.panel-blocks{ display:flex; gap:14px; align-items:flex-start; margin-top:34px; }
+.panel-blocks b{ display:block; border-radius:24%; }
+.panel-blocks b:nth-child(2){ align-self:flex-end; }
 
 /* ---------- showcase (photo + quote, stacked per brand-guide mockup) ---------- */
 .showcase{ margin:0; }                 /* <figure> */
@@ -719,10 +749,13 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
 /* ---------- contact info cards ---------- */
 .info-list{ display:grid; gap:16px; grid-template-columns:1fr 1fr; }
 .info-card{ display:flex; gap:16px; align-items:flex-start; background:var(--dark); border-radius:var(--radius-lg); padding:20px 22px; box-shadow:0 12px 28px -20px rgba(26,26,26,.5); min-height:110px; border:1px solid rgba(255,255,255,.06); }
-.info-card .ic{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; }
+/* bigger pixel icons, coloured directly on the dark card (same style as the homepage cards) —
+   no pastel chip. Colour comes from an inline `color:` on each `.ic`; the pico must inherit it
+   (the base .pico rule would otherwise force it dark → invisible on the dark card). */
+.info-card .ic{ width:44px; height:44px; display:flex; align-items:center; justify-content:center; flex:none; }
 .info-card svg{ width:20px; height:20px; stroke:var(--dark); }
-.info-card .ic{ color:var(--dark); }
-.info-card .ic .pico{ width:24px; height:24px; }
+.info-card .ic .pico{ width:40px; height:40px; color:inherit; }
+.info-card .ic .pico svg{ width:100%; height:100%; }
 .info-card h4{ font-size:15px; margin-bottom:4px; color:var(--white); }
 .info-card p{ font-size:14px; color:rgba(255,255,255,.64); }
 .info-card p a{ color:var(--white); }
@@ -730,9 +763,12 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
 
 /* ---------- values grid (about) ---------- */
 .values{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-.v-card{ padding:30px; border-radius:var(--radius-lg); background:var(--dark); border:1px solid rgba(255,255,255,.06); }
-.v-card .tag{ width:38px; height:38px; border-radius:10px; margin-bottom:16px; }
-.v-card h4{ font-size:17px; margin-bottom:8px; color:var(--white); }
+/* colour block on the left, the value name to its right, description indented below (client ask) */
+.v-card{ padding:28px 30px; border-radius:var(--radius-lg); background:var(--dark); border:1px solid rgba(255,255,255,.06);
+  display:grid; grid-template-columns:auto 1fr; column-gap:16px; row-gap:10px; align-items:center; }
+.v-card .tag{ width:40px; height:40px; border-radius:11px; }
+.v-card p{ grid-column:2; margin:0; }
+.v-card h4{ font-size:17px; margin:0; color:var(--white); }
 .v-card p{ font-size:14px; color:rgba(255,255,255,.64); }
 .v-card .mark{ width:30px; height:auto; margin-bottom:18px; display:block; }
 
