@@ -6,9 +6,11 @@
 <title>Contact — Pixel CPA</title>
 <meta name="description" content="Prenez rendez-vous avec Pixel CPA pour discuter de votre comptabilité, votre fiscalité ou le démarrage de votre entreprise.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="theme-blue">
 <div class="scroll-progress"></div>
 
 <nav class="nav">
@@ -95,13 +97,7 @@
             Nous offrons nos services entièrement à distance, par visioconférence, courriel et partage de documents, pour vous accompagner partout au Québec.
           </p>
         </div>
-        <div style="border-radius:var(--radius-xl); overflow:hidden; flex:1; min-height:340px; box-shadow:0 24px 48px -24px rgba(26,26,26,.25); border:1px solid rgba(26,26,26,.08);">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-79.5%2C45.4%2C-56.0%2C62.8&layer=mapnik"
-            width="100%" height="100%" style="border:0; display:block; min-height:320px;"
-            loading="lazy"
-            title="Carte du Québec"></iframe>
-        </div>
+        <div id="contact-map" class="contact-map" role="img" aria-label="Zone desservie au Québec : Montréal, Québec et le Saguenay" style="border-radius:var(--radius-xl); overflow:hidden; box-shadow:0 24px 48px -24px rgba(26,26,26,.25); border:1px solid rgba(26,26,26,.08);"></div>
       </div>
     </div>
   </div>
@@ -125,5 +121,33 @@
 
 <script src="script.js"></script>
 <script src="footer.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script>
+(function () {
+  var el = document.getElementById('contact-map');
+  if (!el || typeof L === 'undefined') return;
+  var cities = [
+    { name: 'Montréal', lat: 45.5019, lng: -73.5674, color: '#FFB347', r: 88000 },
+    { name: 'Québec',   lat: 46.8139, lng: -71.2080, color: '#30C4B6', r: 88000 },
+    { name: 'Saguenay', lat: 48.4281, lng: -71.0680, color: '#FF6B4A', r: 62000 }
+  ];
+  var map = L.map(el, {
+    zoomControl: false, dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
+    touchZoom: false, boxZoom: false, keyboard: false
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+  cities.forEach(function (c) {
+    L.circle([c.lat, c.lng], { radius: c.r, color: c.color, weight: 2.5, fillColor: c.color, fillOpacity: .25 }).addTo(map);
+    L.circleMarker([c.lat, c.lng], { radius: 11, color: '#fff', weight: 3, fillColor: c.color, fillOpacity: 1 })
+      .addTo(map)
+      .bindTooltip(c.name, { permanent: true, direction: 'top', offset: [0, -9], className: 'map-city' });
+  });
+  map.fitBounds(L.latLngBounds(cities.map(function (c) { return [c.lat, c.lng]; })), { padding: [95, 95] });
+})();
+</script>
 </body>
 </html>

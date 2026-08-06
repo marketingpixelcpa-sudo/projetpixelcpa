@@ -62,7 +62,7 @@
 }
 </script>
 </head>
-<body>
+<body class="theme-coral">
 <a href="#main" class="skip-link">Aller au contenu principal</a>
 <div class="scroll-progress"></div>
 
@@ -104,13 +104,15 @@
 <section class="section-defer">
   <div class="wrap">
     <div class="panel-dark cta-split" data-reveal="scale">
+      <span class="panel-blocks" aria-hidden="true">
+        <b style="width:92px;height:92px;left:44px;bottom:-48px;"></b>
+        <b style="width:58px;height:58px;left:206px;bottom:-20px;animation-delay:1.1s;"></b>
+        <b style="width:92px;height:92px;right:44px;top:-48px;"></b>
+        <b style="width:58px;height:58px;right:206px;top:-20px;animation-delay:1.1s;"></b>
+      </span>
       <div class="cta-split-head">
         <span class="eyebrow on-dark">Qui nous sommes</span>
         <h2>Expertise comptable, réflexe technologique</h2>
-        <span class="panel-blocks" aria-hidden="true">
-          <b style="width:60px;height:60px;background:var(--coral);"></b>
-          <b style="width:38px;height:38px;background:var(--orange);"></b>
-        </span>
       </div>
       <div class="cta-split-body">
         <p class="lede">Pixel CPA est un cabinet comptable moderne basé au Québec, spécialisé dans l'accompagnement des professionnels autonomes et des petites entreprises. En combinant expertise comptable traditionnelle et outils d'automatisation et d'intelligence artificielle, nous offrons une approche pragmatique et accessible de la comptabilité.</p>
@@ -130,22 +132,22 @@
     </div>
     <div class="values stagger">
       <div class="v-card" data-reveal="scale" style="--i:0">
-        <div class="tag" style="background:var(--orange);"></div>
+        <span class="mark pico" style="color:var(--orange);" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 10H15V12H17V10Z"/><path d="M11 10H13V12H11V10Z"/><path d="M9 10H7V12H9V10Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M19 3H5V5H3V17H5V19H17V21H19V19H21V5H19V3ZM19 5V19H17V17H5V5H19Z"/></svg></span>
         <h4>Clarté avant tout</h4>
         <p>Aucun jargon comptable. On vous explique vos chiffres comme à un associé, pas comme à un client.</p>
       </div>
       <div class="v-card" data-reveal="scale" style="--i:1">
-        <div class="tag" style="background:var(--teal);"></div>
+        <span class="mark pico" style="color:var(--teal);" aria-hidden="true"><svg viewBox="0 0 51 51"><path d="M10.625 6.375H40.375V10.625H10.625V6.375Z"/><path d="M10.625 40.375H6.375V10.625H10.625V40.375Z"/><path d="M40.375 40.375V44.625H10.625V40.375H40.375Z"/><path d="M40.375 40.375H44.625V10.625H40.375V40.375Z"/><path d="M36.125 14.875V36.125H31.875L31.875 14.875H36.125Z"/><path d="M27.625 36.125V23.375H23.375V36.125H27.625Z"/><path d="M19.125 36.125V27.625H14.875V36.125H19.125Z"/></svg></span>
         <h4>Pragmatisme</h4>
         <p>On automatise ce qui peut l'être et on garde l'humain là où il fait vraiment la différence.</p>
       </div>
       <div class="v-card" data-reveal="scale" style="--i:2">
-        <div class="tag" style="background:var(--coral);"></div>
+        <span class="mark pico" style="color:var(--coral);" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 1H17V3H7V1Z"/><path d="M5 5V3H7V5H5Z"/><path d="M5 15H3V5H5V15Z"/><path d="M7 17H5V15H7V17Z"/><path d="M9 19H7V17H9V19Z"/><path d="M11 21H9V19H11V21Z"/><path d="M13 21V23H11V21H13Z"/><path d="M15 19V21H13V19H15Z"/><path d="M17 17H15V19H17V17Z"/><path d="M19 15V17H17V15H19Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M19 5V3H17V5H19ZM19 5H21V15H19V5Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14 6H10V8H8V12H10V14H14V12H16V8H14V6ZM14 8V12H10V8H14Z"/></svg></span>
         <h4>Proximité</h4>
         <p>Un cabinet à taille humaine, ancré au Québec, avec un vrai accès à votre comptable.</p>
       </div>
       <div class="v-card" data-reveal="scale" style="--i:3">
-        <div class="tag" style="background:var(--blue);"></div>
+        <span class="mark pico" style="color:var(--blue-soft);" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 2H16V4H14V6H12V8H10V10H8V12H6V18H12V16H14V14H16V12H18V10H20V8H22V6H20V4H18V2ZM18 4V6H20V8H18V10H16V12H14V14H12V16H10V14H8V12H10V10H12V8H14V6H16V4H18Z"/><path d="M4 4H10V6H4V4Z"/><path d="M4 20H2V6H4V20Z"/><path d="M18 20H4V22L18 22V20Z"/><path d="M18 20V14H20V20H18Z"/></svg></span>
         <h4>Rigueur</h4>
         <p>Des dossiers propres et des échéances respectées, sans exception.</p>
       </div>
@@ -153,10 +155,34 @@
   </div>
 </section>
 
+<!-- ================= CITATION (photo + coin déconstruit) ================= -->
+<section class="section-tight section-defer">
+  <div class="wrap">
+    <figure class="quote-showcase" data-reveal="scale">
+      <img src="assets/img/startupstockphotos-man-593333_1920.jpg"
+           width="1920" height="1170"
+           alt="Entrepreneur prenant des notes à côté de son ordinateur portable" loading="lazy" decoding="async">
+      <span class="quote-mark" aria-hidden="true">”</span>
+      <blockquote>
+        <p>La comptabilité ne devrait jamais être un frein, mais un levier pour faire grandir votre entreprise.</p>
+        <cite>— L'équipe Pixel CPA</cite>
+      </blockquote>
+    </figure>
+  </div>
+</section>
+
 <!-- ================= CTA ================= -->
 <section class="section-defer">
   <div class="wrap">
     <div class="panel-dark" style="padding:64px 40px; text-align:center;" data-reveal="scale">
+      <span class="pixels-anim" aria-hidden="true">
+        <i class="p1" style="left:40px;bottom:-40px;"></i>
+        <i class="p2" style="left:114px;bottom:-6px;"></i>
+        <i class="p3" style="left:78px;bottom:46px;"></i>
+        <i class="p1" style="right:40px;top:-40px;"></i>
+        <i class="p2" style="right:114px;top:-6px;"></i>
+        <i class="p3" style="right:78px;top:46px;"></i>
+      </span>
       <div class="cta-band" style="position:relative; z-index:2;">
         <span class="eyebrow on-dark">Envie de nous rencontrer ?</span>
         <h2 style="color:var(--white); margin-top:18px;">Faisons connaissance</h2>
