@@ -651,8 +651,9 @@ section{ padding:112px 0; position:relative; }
 .s-card:hover{ box-shadow:0 30px 60px -28px rgba(26,26,26,.5); }
 .s-card:not(:hover){ transform:none !important; }
 .s-icon{
-  display:block;
-  margin-bottom:20px;
+  width:52px; height:52px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:22px;
   transition:transform .4s var(--ease);
 }
 .s-card:hover .s-icon{ transform:rotate(-6deg) scale(1.06); }
@@ -666,13 +667,12 @@ section{ padding:112px 0; position:relative; }
   transition:opacity .3s ease, transform .3s ease;
 }
 .s-card:hover .go{ opacity:1; transform:translateX(0); }
-/* no tile ("rebord") — the icon is a coloured brand glyph directly on the dark card (client).
-   target .pico so it beats the base `.pico{color:var(--dark)}` rule. */
-.s-icon.orange .pico{ color:var(--orange); }
-.s-icon.teal .pico{ color:var(--teal); }
-.s-icon.coral .pico{ color:var(--coral); }
-.s-icon.blue .pico{ color:var(--blue-soft); }
-.s-icon.red .pico{ color:var(--red); }
+/* small FADED (pale) colour tile + solid BLACK glyph — "comme avant" (client) */
+.s-icon.orange{ background:#FFD79E; }
+.s-icon.teal{ background:#9BDDD5; }
+.s-icon.coral{ background:#FFBBA9; }
+.s-icon.blue{ background:#A9CFE8; }
+.s-icon.red{ background:#F3C4C4; }
 
 /* ---------- pixel icons (client brand icon set) — inlined & recoloured ---------- */
 /* The delivered SVGs are solid-black pixel art. They're inlined (not referenced via
@@ -681,7 +681,7 @@ section{ padding:112px 0; position:relative; }
 .pico{ display:inline-block; line-height:0; color:var(--dark); }
 .pico svg{ display:block; width:100%; height:100%; }
 .pico svg path{ fill:currentColor; }
-.s-icon .pico{ width:40px; height:40px; }
+.s-icon .pico{ width:26px; height:26px; color:var(--dark); }
 
 /* ---------- deconstructed colour cards (home services preview) ---------- */
 .deco-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
@@ -840,10 +840,12 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
 /* bigger pixel icons, coloured directly on the dark card (same style as the homepage cards) —
    no pastel chip. Colour comes from an inline `color:` on each `.ic`; the pico must inherit it
    (the base .pico rule would otherwise force it dark → invisible on the dark card). */
-.info-card .ic{ width:46px; height:46px; display:flex; align-items:center; justify-content:center; flex:none; }
-/* the whole 46px pico is the icon (the old 20px line-icon rule is gone — it kept the glyph tiny) */
-.info-card .ic .pico{ width:46px; height:46px; color:inherit; display:block; }
+.info-card .ic{ width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none;
+  background:color-mix(in srgb, currentColor 26%, #fff); transition:transform .4s var(--ease); }
+.info-card .ic .pico{ width:26px; height:26px; color:var(--dark); display:block; }
 .info-card .ic .pico svg{ width:100% !important; height:100% !important; display:block; }
+.info-card .ic .pico svg path{ fill:var(--dark); }
+.info-card:hover .ic{ transform:rotate(-6deg) scale(1.06); }
 .info-card h4{ font-size:15px; margin-bottom:4px; color:var(--white); }
 .info-card p{ font-size:14px; color:rgba(255,255,255,.64); }
 .info-card p a{ color:var(--white); }
@@ -864,7 +866,11 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
 .v-card{ padding:30px 26px; border-radius:var(--radius-lg); background:var(--dark); border:1px solid rgba(255,255,255,.06);
   transition:transform .4s var(--ease), box-shadow .4s var(--ease); }
 .v-card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(26,26,26,.5); }
-.v-card .mark{ width:34px; height:34px; margin-bottom:20px; display:block; }
+.v-card .mark{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+  margin-bottom:20px; background:color-mix(in srgb, currentColor 26%, #fff); transition:transform .4s var(--ease); }
+.v-card .mark svg{ width:26px; height:26px; }
+.v-card .mark svg path{ fill:var(--dark); }
+.v-card:hover .mark{ transform:rotate(-6deg) scale(1.06); }
 .v-card h4{ font-size:16.5px; margin-bottom:8px; color:var(--white); }
 .v-card p{ font-size:14px; color:rgba(255,255,255,.64); margin:0; }
 
@@ -878,7 +884,11 @@ footer{ background:var(--dark); color:var(--white); padding:72px 0 28px; }
   transition:transform .4s var(--ease), box-shadow .4s var(--ease);
 }
 .why-card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(26,26,26,.5); }
-.why-card .mark{ width:34px; height:34px; margin-bottom:20px; display:block; }
+.why-card .mark{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+  margin-bottom:20px; background:color-mix(in srgb, currentColor 26%, #fff); transition:transform .4s var(--ease); }
+.why-card .mark svg{ width:26px; height:26px; }
+.why-card .mark svg path{ fill:var(--dark); }
+.why-card:hover .mark{ transform:rotate(-6deg) scale(1.06); }
 .why-card h4{ font-size:16.5px; margin-bottom:8px; color:var(--white); }
 .why-card p{ font-size:14px; color:rgba(255,255,255,.64); }
 
