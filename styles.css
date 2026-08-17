@@ -790,10 +790,14 @@ section{ padding:112px 0; position:relative; }
 .quote-showcase .quote-mark{ position:absolute; left:calc(3.4% - 20px); bottom:calc(40% - 30px); z-index:3;
   font-family:var(--font-display); font-weight:800; font-size:clamp(66px,7vw,94px); line-height:.4; color:var(--dark); }
 .quote-showcase blockquote{ position:absolute; left:0; bottom:0; margin:0; width:28%; min-width:225px; background:transparent;
-  padding:0 14px 2.4% 2.9%; z-index:2; }
-.quote-showcase blockquote p{ font-size:clamp(12px,1.12vw,14.5px); line-height:1.4; color:var(--dark);
-  font-weight:500; margin:0 0 6px; }
-.quote-showcase cite{ font-style:normal; font-size:11.5px; font-weight:700; letter-spacing:.02em; color:var(--ink-soft); }
+  padding:0 8px 1.4% 2.6%; z-index:2; }
+/* bigger quote (client) → the text now runs to 4 lines, so the block is tightened (smaller
+   padding/margins, snug cite leading) to keep it inside the frame's short bottom notch
+   instead of riding up onto the photo. */
+.quote-showcase blockquote p{ font-size:clamp(13px,1.26vw,16px); line-height:1.36; color:var(--dark);
+  font-weight:500; margin:0 0 4px; }
+.quote-showcase cite{ font-style:normal; display:block; font-size:12.5px; line-height:1.2; font-weight:700;
+  letter-spacing:.02em; color:var(--ink-soft); }
 /* the wide-short frame can't hold the quote once narrow — stack a plain card instead */
 @media(max-width:900px){
   .quote-showcase{ aspect-ratio:auto; filter:none; }
