@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="index.html" class="logo on-dark">
           <img src="assets/logo-full-light.svg" alt="Pixel CPA" class="logo-img" width="144" height="26">
         </a>
+        <p class="foot-legal" style="margin:12px 0 0;font-size:13px;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.82);">9543-8297 Québec Inc.</p>
         <p>Cabinet comptable moderne basé au Québec, dédié aux professionnels et petites entreprises.</p>
       </div>
       <div class="foot-col">
